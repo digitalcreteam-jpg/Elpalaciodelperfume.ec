@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Palacio del Perfume - Tu Esencia, Nuestra Inspiración</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --negro: #0A0A0A;
+            --negro-claro: #1A1A1A;
+            --dorado: #D4AF37;
+            --dorado-claro: #F4E4BC;
+            --rojo: #DC2626;
+            --rojo-oscuro: #991B1B;
+            --blanco: #FFFFFF;
+            --gris: #888888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--negro);
+            color: var(--blanco);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--negro) 0%, var(--negro-claro) 100%);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--dorado);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--dorado);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--blanco);
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+        }
+
+        .hero {
+            margin-top: 100px;
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--negro) 0%, #1a1a2e 50%, var(--negro) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-claro) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gris);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--rojo);
+            color: var(--blanco);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .promos {
+            padding: 80px 0;
+            background: var(--negro);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dorado);
+        }
+
+        .promos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .promo-card {
+            background: var(--negro-claro);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--dorado);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .promo-image {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .promo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dorado);
+            margin-bottom: 10px;
+        }
+
+        .promo-desc {
+            color: var(--gris);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .promo-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--blanco);
+            margin-bottom: 5px;
+        }
+
+        .promo-envio {
+            font-size: 0.85rem;
+            color: var(--rojo);
+            margin-bottom: 20px;
+        }
+
+        .btn-seleccionar {
+            background: var(--rojo);
+            color: var(--blanco);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-seleccionar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        .catalogo {
+            padding: 80px 0;
+            background: var(--negro-claro);
+            display: none;
+        }
+
+        .catalogo.active {
+            display: block;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 20px 30px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            background: var(--negro);
+            color: var(--blanco);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            color: var(--gris);
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--dorado);
+            border-color: var(--dorado);
+            color: var(--negro);
+        }
+
+        .esencias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .esencia-card {
+            background: var(--negro);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .esencia-card:hover {
+            border-color: var(--dorado);
+        }
+
+        .esencia-card.selected {
+            border-color: var(--rojo);
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .esencia-nombre {
+            font-weight: 700;
+            color: var(--blanco);
+            margin-bottom: 5px;
+        }
+
+        .esencia-marca {
+            color: var(--dorado);
+            font-size: 0.9rem;
+        }
+
+        .esencia-familia {
+            color: var(--gris);
+            font-size: 0.85rem;
+        }
+
+        .resumen-pedido {
+            background: rgba(220, 38, 38, 0.1);
+            border: 2px solid var(--rojo);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            display: none;
+        }
+
+        .resumen-pedido.active {
+            display: block;
+        }
+
+        .btn-comprar {
+            background: #25D366;
+            color: var(--blanco);
+            border: none;
+            padding: 20px 60px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: var(--negro-claro);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .promos-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-text">
+                El Palacio del Perfume
+                <span>Tu Esencia, Nuestra Inspiración</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Fragancias de Lujo<br>al Mejor Precio</h1>
+            <p>Descubre nuestras promociones exclusivas en perfumes de alta calidad. Elige tu combo y selecciona tus esencias favoritas.</p>
+            <div class="hero-badge">🚚 Envíos a Todo Ecuador por Servientrega</div>
+        </div>
+    </section>
+
+    <section class="promos" id="promos">
+        <div class="container">
+            <h2 class="section-title">Nuestras Promociones</h2>
+            <div class="promos-grid" id="promosGrid"></div>
+        </div>
+    </section>
+
+    <section class="catalogo" id="catalogo">
+        <div class="container">
+            <h2 class="section-title">Selecciona tus Esencias</h2>
+            <div style="background: rgba(212,175,55,0.1); border: 2px solid var(--dorado); border-radius: 15px; padding: 20px; margin-bottom: 30px;">
+                <h3 id="promoNombre" style="color: var(--dorado); margin-bottom: 10px;"></h3>
+                <p>Selecciona <span id="esenciasMaximas" style="color: var(--rojo); font-weight: 700;"></span> esencias para tu pedido</p>
+                <p>Seleccionadas: <span id="esenciasSeleccionadas" style="color: var(--dorado); font-weight: 700;">0</span></p>
+            </div>
+
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Buscar esencia por nombre o marca...">
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filtrar('todos')">Todos</button>
+                <button class="filter-btn" onclick="filtrar('hombre')">Hombre</button>
+                <button class="filter-btn" onclick="filtrar('mujer')">Mujer</button>
+                <button class="filter-btn" onclick="filtrar('unisex')">Unisex</button>
+            </div>
+
+            <div class="esencias-grid" id="esenciasGrid"></div>
+
+            <div class="resumen-pedido" id="resumenPedido">
+                <h3 style="color: var(--rojo); margin-bottom: 20px;">✓ Pedido Completo</h3>
+                <ul id="listaEsencias" style="text-align: left; margin: 20px 0; list-style: none;"></ul>
+                <button class="btn-comprar" onclick="comprarWhatsApp()">📱 Comprar por WhatsApp</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo-text" style="font-size: 1.2rem; margin-bottom: 20px;">El Palacio del Perfume</div>
+            <p>12 Locales Físicos | Guayaquil • Quito • Manta • Portoviejo</p>
+            <p style="margin-top: 20px; color: var(--gris);">© 2026 Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+
+// CONFIGURACIÓN DE PROMOS
+const PROMOS = [
+    { id: "p1", nombre: "Simgler", desc: "4 Perfumes de 30ML", cantidad: 4, precio: 10, emoji: "💎" },
+    { id: "p2", nombre: "Cilindro", desc: "3 Perfumes de 50ML", cantidad: 3, precio: 12, emoji: "🧴" },
+    { id: "p3", nombre: "Cilindros/Simgler Surtido", desc: "5 Perfumes de 20ML", cantidad: 5, precio: 10, emoji: "✨" },
+    { id: "p4", nombre: "Luxury", desc: "3 Perfumes de 100ML", cantidad: 3, precio: 24, emoji: "👑" },
+    { id: "p5", nombre: "Cilindro 100ML", desc: "3 Perfumes de 100ML", cantidad: 3, precio: 20, emoji: "🥇" },
+    { id: "p6", nombre: "Pipe", desc: "3 Perfumes de 100ML", cantidad: 3, precio: 21, emoji: "🎯" },
+    { id: "p7", nombre: "Xerjoff", desc: "5 Perfumes de 50ML", cantidad: 5, precio: 20, emoji: "🔥" },
+    { id: "p8", nombre: "Surtido Premium", desc: "6 Perfumes de 30ML (Valentino, Corazón, Eros, Si Armani, California)", cantidad: 6, precio: 15, emoji: "💫" }
+];
+
+// 12 LOCALES WHATSAPP
+const LOCALES = [
+    { num: "593994898406", ciudad: "Guayaquil", cod: "701" },
+    { num: "593997048768", ciudad: "Guayaquil", cod: "703" },
+    { num: "593982531383", ciudad: "Guayaquil", cod: "704" },
+    { num: "593982531110", ciudad: "Guayaquil", cod: "705" },
+    { num: "593968219285", ciudad: "Guayaquil", cod: "706" },
+    { num: "593969318319", ciudad: "Guayaquil", cod: "715" },
+    { num: "593993347101", ciudad: "Quito", cod: "710" },
+    { num: "593980160078", ciudad: "Quito", cod: "711" },
+    { num: "593967853587", ciudad: "Quito", cod: "713" },
+    { num: "593997456144", ciudad: "Quito", cod: "716" },
+    { num: "593982557020", ciudad: "Manta", cod: "712" },
+    { num: "593979596506", ciudad: "Portoviejo", cod: "714" }
+];
+
+// CATÁLOGO DE ESENCIAS (Top 50 de cada categoría)
+const ESENCIAS = {
+    hombre: [
+        { nombre: "Sauvage", marca: "Dior", tipo: "Aromática" },
+        { nombre: "1 Million", marca: "Paco Rabanne", tipo: "Oriental" },
+        { nombre: "Acqua di Gio", marca: "Armani", tipo: "Acuática" },
+        { nombre: "Invictus", marca: "Paco Rabanne", tipo: "Acuática" },
+        { nombre: "CH Men", marca: "Carolina Herrera", tipo: "Oriental" },
+        { nombre: "212 Men", marca: "Carolina Herrera", tipo: "Fresca" },
+        { nombre: "Le Male", marca: "Jean Paul Gaultier", tipo: "Aromática" },
+        { nombre: "Eros", marca: "Versace", tipo: "Oriental" },
+        { nombre: "Dylan Blue", marca: "Versace", tipo: "Acuática" },
+        { nombre: "Armani Code", marca: "Armani", tipo: "Oriental" },
+        { nombre: "Boss Bottled", marca: "Hugo Boss", tipo: "Amaderada" },
+        { nombre: "Layton", marca: "Parfums de Marly", tipo: "Oriental" },
+        { nombre: "Oud for Greatness", marca: "Initio", tipo: "Oud" },
+        { nombre: "Asad", marca: "Lattafa", tipo: "Oriental" },
+        { nombre: "Khamrah", marca: "Lattafa", tipo: "Oriental" },
+        { nombre: "Ombre Leather", marca: "Tom Ford", tipo: "Cuero" },
+        { nombre: "Bleu de Chanel", marca: "Chanel", tipo: "Aromática" },
+        { nombre: "Stronger With You", marca: "Armani", tipo: "Oriental" },
+        { nombre: "Legend Spirit", marca: "Montblanc", tipo: "Fresca" },
+        { nombre: "Explorer", marca: "Montblanc", tipo: "Amaderada" },
+        { nombre: "Phantom", marca: "Paco Rabanne", tipo: "Aromática" },
+        { nombre: "Scandal Pour Homme", marca: "Jean Paul Gaultier", tipo: "Amaderada" },
+        { nombre: "Y EDP", marca: "YSL", tipo: "Aromática" },
+        { nombre: "Luna Rossa Carbon", marca: "Prada", tipo: "Aromática" },
+        { nombre: "Bad Boy", marca: "Carolina Herrera", tipo: "Oriental" }
+    ],
+    mujer: [
+        { nombre: "La Vie Est Belle", marca: "Lancome", tipo: "Gourmand" },
+        { nombre: "Good Girl", marca: "Carolina Herrera", tipo: "Oriental" },
+        { nombre: "Light Blue", marca: "Dolce Gabbana", tipo: "Cítrica" },
+        { nombre: "Scandal", marca: "Jean Paul Gaultier", tipo: "Gourmand" },
+        { nombre: "Angel", marca: "Mugler", tipo: "Gourmand" },
+        { nombre: "212 VIP", marca: "Carolina Herrera", tipo: "Oriental" },
+        { nombre: "Lady Million", marca: "Paco Rabanne", tipo: "Oriental" },
+        { nombre: "Si", marca: "Armani", tipo: "Chypre" },
+        { nombre: "Libre", marca: "YSL", tipo: "Aromática" },
+        { nombre: "Born in Roma", marca: "Valentino", tipo: "Oriental" },
+        { nombre: "Cloud", marca: "Ariana Grande", tipo: "Gourmand" },
+        { nombre: "Yara", marca: "Lattafa", tipo: "Gourmand" },
+        { nombre: "Mayar", marca: "Lattafa", tipo: "Floral" },
+        { nombre: "Love Spell", marca: "Victoria Secret", tipo: "Floral" },
+        { nombre: "Bombshell", marca: "Victoria Secret", tipo: "Frutal" },
+        { nombre: "Fantasy", marca: "Britney Spears", tipo: "Gourmand" },
+        { nombre: "Viva La Juicy", marca: "Juicy Couture", tipo: "Gourmand" },
+        { nombre: "Miss Dior", marca: "Dior", tipo: "Floral" },
+        { nombre: "Gabrielle", marca: "Chanel", tipo: "Floral" },
+        { nombre: "Chance", marca: "Chanel", tipo: "Floral" },
+        { nombre: "Jadore", marca: "Dior", tipo: "Floral" },
+        { nombre: "Poison", marca: "Dior", tipo: "Oriental" },
+        { nombre: "Olympéa", marca: "Paco Rabanne", tipo: "Oriental" },
+        { nombre: "Alien", marca: "Mugler", tipo: "Oriental" },
+        { nombre: "Black Opium", marca: "YSL", tipo: "Gourmand" }
+    ],
+    unisex: [
+        { nombre: "Baccarat Rouge 540", marca: "MFK", tipo: "Oriental" },
+        { nombre: "Creed Aventus", marca: "Creed", tipo: "Frutal" },
+        { nombre: "Oud Wood", marca: "Tom Ford", tipo: "Oud" },
+        { nombre: "Santal 33", marca: "Le Labo", tipo: "Amaderada" },
+        { nombre: "Black Phantom", marca: "Kilian", tipo: "Gourmand" },
+        { nombre: "Bergamote 22", marca: "Le Labo", tipo: "Cítrica" },
+        { nombre: "Another 13", marca: "Le Labo", tipo: "Amaderada" },
+        { nombre: "Neroli Portofino", marca: "Tom Ford", tipo: "Cítrica" },
+        { nombre: "Tobacco Vanille", marca: "Tom Ford", tipo: "Oriental" },
+        { nombre: "Lost Cherry", marca: "Tom Ford", tipo: "Frutal" },
+        { nombre: "Fucking Fabulous", marca: "Tom Ford", tipo: "Cuero" },
+        { nombre: "Gypsy Water", marca: "Byredo", tipo: "Amaderada" },
+        { nombre: "Bal d'Afrique", marca: "Byredo", tipo: "Oriental" },
+        { nombre: "Mojave Ghost", marca: "Byredo", tipo: "Floral" },
+        { nombre: "Blanche", marca: "Byredo", tipo: "Floral" },
+        { nombre: "Super Cedar", marca: "Byredo", tipo: "Amaderada" },
+        { nombre: "Rose of No Man's Land", marca: "Byredo", tipo: "Floral" },
+        { nombre: "Young Rose", marca: "Byredo", tipo: "Floral" },
+        { nombre: "Slow Dance", marca: "Byredo", tipo: "Oriental" },
+        { nombre: "Eleventh Hour", marca: "Byredo", tipo: "Amaderada" }
+    ]
+};
+
+// VARIABLES GLOBALES
+let promoActual = null;
+let esenciasSeleccionadas = [];
+let filtroActual = 'todos';
+
+// INICIALIZAR
+window.onload = function() {
+    renderizarPromos();
+
+    // Buscador
+    document.getElementById('searchBox').addEventListener('input', function(e) {
+        buscarEsencias(e.target.value);
+    });
+};
+
+// RENDERIZAR PROMOS
+function renderizarPromos() {
+    const grid = document.getElementById('promosGrid');
+    grid.innerHTML = PROMOS.map(promo => `
+        <div class="promo-card">
+            <div class="promo-image">${promo.emoji}</div>
+            <div class="promo-name">${promo.nombre}</div>
+            <div class="promo-desc">${promo.desc}</div>
+            <div class="promo-price">$${promo.precio.toFixed(2)}</div>
+            <div class="promo-envio">⚠️ No incluye envío (cotizado por WhatsApp)</div>
+            <button class="btn-seleccionar" onclick="seleccionarPromo('${promo.id}')">
+                Seleccionar
+            </button>
+        </div>
+    `).join('');
+}
+
+// SELECCIONAR PROMO
+function seleccionarPromo(id) {
+    promoActual = PROMOS.find(p => p.id === id);
+    esenciasSeleccionadas = [];
+
+    document.getElementById('promoNombre').textContent = `${promoActual.nombre} - $${promoActual.precio.toFixed(2)}`;
+    document.getElementById('esenciasMaximas').textContent = promoActual.cantidad;
+    document.getElementById('esenciasSeleccionadas').textContent = '0';
+
+    document.getElementById('promos').style.display = 'none';
+    document.getElementById('catalogo').classList.add('active');
+
+    renderizarEsencias();
+    window.scrollTo(0, 0);
+}
+
+// RENDERIZAR ESENCIAS
+function renderizarEsencias() {
+    const grid = document.getElementById('esenciasGrid');
+    let todasEsencias = [];
+
+    if (filtroActual === 'todos' || filtroActual === 'hombre') {
+        todasEsencias = todasEsencias.concat(ESENCIAS.hombre.map(e => ({...e, categoria: 'Hombre'})));
+    }
+    if (filtroActual === 'todos' || filtroActual === 'mujer') {
+        todasEsencias = todasEsencias.concat(ESENCIAS.mujer.map(e => ({...e, categoria: 'Mujer'})));
+    }
+    if (filtroActual === 'todos' || filtroActual === 'unisex') {
+        todasEsencias = todasEsencias.concat(ESENCIAS.unisex.map(e => ({...e, categoria: 'Unisex'})));
+    }
+
+    grid.innerHTML = todasEsencias.map((esencia, index) => {
+        const isSelected = esenciasSeleccionadas.some(e => e.nombre === esencia.nombre && e.marca === esencia.marca);
+        return `
+            <div class="esencia-card ${isSelected ? 'selected' : ''}" onclick="toggleEsencia('${esencia.nombre}', '${esencia.marca}', '${esencia.categoria}')">
+                <div class="esencia-nombre">${esencia.nombre}</div>
+                <div class="esencia-marca">${esencia.marca}</div>
+                <div class="esencia-familia">${esencia.tipo} • ${esencia.categoria}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// FILTRAR
+function filtrar(categoria) {
+    filtroActual = categoria;
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase() === categoria || (categoria === 'todos' && btn.textContent === 'Todos')) {
+            btn.classList.add('active');
+        }
+    });
+    renderizarEsencias();
+}
+
+// BUSCAR
+function buscarEsencias(termino) {
+    const grid = document.getElementById('esenciasGrid');
+    if (!termino) {
+        renderizarEsencias();
+        return;
+    }
+
+    termino = termino.toLowerCase();
+    let todasEsencias = [
+        ...ESENCIAS.hombre.map(e => ({...e, categoria: 'Hombre'})),
+        ...ESENCIAS.mujer.map(e => ({...e, categoria: 'Mujer'})),
+        ...ESENCIAS.unisex.map(e => ({...e, categoria: 'Unisex'}))
+    ];
+
+    const filtradas = todasEsencias.filter(e => 
+        e.nombre.toLowerCase().includes(termino) || 
+        e.marca.toLowerCase().includes(termino) ||
+        e.tipo.toLowerCase().includes(termino)
+    );
+
+    grid.innerHTML = filtradas.map(esencia => {
+        const isSelected = esenciasSeleccionadas.some(e => e.nombre === esencia.nombre && e.marca === esencia.marca);
+        return `
+            <div class="esencia-card ${isSelected ? 'selected' : ''}" onclick="toggleEsencia('${esencia.nombre}', '${esencia.marca}', '${esencia.categoria}')">
+                <div class="esencia-nombre">${esencia.nombre}</div>
+                <div class="esencia-marca">${esencia.marca}</div>
+                <div class="esencia-familia">${esencia.tipo} • ${esencia.categoria}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// TOGGLE ESENCIA
+function toggleEsencia(nombre, marca, categoria) {
+    const index = esenciasSeleccionadas.findIndex(e => e.nombre === nombre && e.marca === marca);
+
+    if (index > -1) {
+        esenciasSeleccionadas.splice(index, 1);
+    } else {
+        if (esenciasSeleccionadas.length >= promoActual.cantidad) {
+            alert(`Ya has seleccionado ${promoActual.cantidad} esencias. Elimina una para cambiar.`);
+            return;
+        }
+        esenciasSeleccionadas.push({ nombre, marca, categoria });
+    }
+
+    document.getElementById('esenciasSeleccionadas').textContent = esenciasSeleccionadas.length;
+
+    if (esenciasSeleccionadas.length === promoActual.cantidad) {
+        mostrarResumen();
+    } else {
+        document.getElementById('resumenPedido').classList.remove('active');
+    }
+
+    renderizarEsencias();
+}
+
+// MOSTRAR RESUMEN
+function mostrarResumen() {
+    const lista = document.getElementById('listaEsencias');
+    lista.innerHTML = esenciasSeleccionadas.map((e, i) => `
+        <li style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            ${i + 1}. <strong>${e.nombre}</strong> - ${e.marca} (${e.categoria})
+        </li>
+    `).join('');
+
+    document.getElementById('resumenPedido').classList.add('active');
+}
+
+// COMPRAR WHATSAPP
+function comprarWhatsApp() {
+    // Rotación 1-12
+    let lastIndex = parseInt(localStorage.getItem('lastLocalIndex') || '0');
+    const local = LOCALES[lastIndex];
+    lastIndex = (lastIndex + 1) % 12;
+    localStorage.setItem('lastLocalIndex', lastIndex);
+
+    // Crear mensaje
+    const esenciasTexto = esenciasSeleccionadas.map((e, i) => 
+        `${i + 1}. ${e.nombre} - ${e.marca}`
+    ).join('%0A');
+
+    const mensaje = `¡Hola! Quiero comprar:%0A%0A` +
+        `*${promoActual.nombre}*%0A` +
+        `${promoActual.desc}%0A` +
+        `Precio: $${promoActual.precio.toFixed(2)}%0A%0A` +
+        `*Esencias seleccionadas:*%0A${esenciasTexto}%0A%0A` +
+        `Total: $${promoActual.precio.toFixed(2)} + envío por Servientrega%0A%0A` +
+        `¿Me pasan número de cuenta y tiempo de envío?`;
+
+    // Abrir WhatsApp
+    window.open(`https://wa.me/${local.num}?text=${mensaje}`, '_blank');
+
+    // Guardar conversión
+    guardarConversion();
+}
+
+// GUARDAR CONVERSIÓN
+function guardarConversion() {
+    const ventas = JSON.parse(localStorage.getItem('ventasPalacio') || '[]');
+    ventas.push({
+        fecha: new Date().toISOString(),
+        promo: promoActual.nombre,
+        precio: promoActual.precio,
+        esencias: esenciasSeleccionadas,
+        local: LOCALES[(parseInt(localStorage.getItem('lastLocalIndex') || '0') - 1 + 12) % 12].ciudad
+    });
+    localStorage.setItem('ventasPalacio', JSON.stringify(ventas));
+}
+
+// PREGUNTAR POR ESENCIA ESPECIAL
+function preguntarEsencia() {
+    let lastIndex = parseInt(localStorage.getItem('lastLocalIndex') || '0');
+    const local = LOCALES[lastIndex];
+    lastIndex = (lastIndex + 1) % 12;
+    localStorage.setItem('lastLocalIndex', lastIndex);
+
+    const mensaje = `¡Hola! Ví su catálogo pero busco una esencia específica que no encontré.%0A%0A` +
+        `¿Podrían ayudarme a conseguirla?%0A%0A` +
+        `Esencia: [ESCRIBA AQUÍ]%0A` +
+        `Marca: [ESCRIBA AQUÍ]%0A%0A` +
+        `Gracias!`;
+
+    window.open(`https://wa.me/${local.num}?text=${mensaje}`, '_blank');
+}
+    </script>
+</body>
+</html>
